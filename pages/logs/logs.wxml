@@ -1,0 +1,9 @@
+<!--logs.wxml-->
+<view class="container log-list">
+  <text class="log-item">昵称：{{user.name}}</text>
+  <text class="log-item">身份：{{user.identity == 0 ? '瓜农' : '瓜商'}} </text>
+  <text class="log-item">电话：{{!user.phone ? '暂无' : user.phone}}</text>
+  <!-- <block wx:for="{{logs}}" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block> -->
+</view>
