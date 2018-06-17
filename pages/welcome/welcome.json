@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "欢迎页",
+  "usingComponents": {
+    "i-button": "../../dist/button/index",
+    "i-modal": "../../dist/modal/index"
+  }
+}

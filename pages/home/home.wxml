@@ -1,0 +1,36 @@
+<view class="con">
+  <i-cell-group>
+    <i-cell>
+      <i-avatar src="{{userInfo.avatarUrl}}" size="large"></i-avatar>
+      <text class="username">{{userInfo.name}}</text>
+      <i-tag wx:if="{{userInfo.identity == 1}}" class="i-tags" name="瓜农" color="green">
+        瓜农
+      </i-tag>
+      <i-tag wx:else class="i-tags" name="瓜商" color="yellow">
+        瓜商
+      </i-tag>
+    </i-cell>
+    <i-cell title="真实姓名" is-link bind:click="handelVirturalNameModal"></i-cell>
+    <i-cell title="电话" is-link bind:click="handelPhoneModal"></i-cell>
+    <i-cell title="信息他人不可见">
+        <switch slot="footer" bindchange="changeShowInfo" checked="userInfo.hideInfo" />
+    </i-cell>
+  </i-cell-group>
+
+  <!-- 真实姓名弹出框 -->
+  <i-modal visible="{{ virtualNameVisible }}" bind:ok="submitChangeVirtualName" bind:cancel="handelVirturalNameModal">
+    <view>
+      <i-input value="{{ userInfo.virtualName }}" bind:change="changeVirturalName" placeholder="请输入你的真实姓名" />
+    </view>
+  </i-modal>
+
+  <!-- 电话弹出框 -->
+  <i-modal visible="{{ phoneVisible }}" bind:ok="submitChangePhone" bind:cancel="handelPhoneModal">
+    <view>
+      <i-input value="{{ userInfo.phone }}" bind:change="changePhone" placeholder="请输入你的电话" />
+    </view>
+  </i-modal>
+
+  <!-- 全局提醒 -->
+  <i-message id="message" />
+</view>

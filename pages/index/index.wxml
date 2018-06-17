@@ -1,16 +1,15 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="con">
+  <i-tabs current="{{ current_tab }}" color="#19be6b" bindchange="handleTabChange">
+    <i-tab key="sell-tab" title="卖瓜"></i-tab>
+    <i-tab key="purc-tab" title="收瓜"></i-tab>
+  </i-tabs>
+  <view wx:if="{{ is_sell_tab }}">
+    卖瓜列表
+
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view wx:else>
+    收瓜列表
+
   </view>
-  <i-modal title="请选择自己的角色" ok-text="瓜农" cancel-text="瓜商" visible="{{ showSelectIdentity }}" bind:ok="handleSelectFarmer" bind:cancel="handleSelectTrader">
-    <view>不同的角色有不同的功能</view>
-  </i-modal>
 </view>

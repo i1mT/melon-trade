@@ -4,8 +4,9 @@ let WD = require("./utils/WD")
 App({
   globalData: {
     userInfo: null,
-    wildUserInfo: null,
-    hasRegistered: false
+    user: null,
+    hasRegistered: false,
+    uid: "",
   },
   $wd: null,
   onLaunch: function () {
@@ -47,12 +48,32 @@ App({
   getWDUser: function() {
     let that = this
     let user = WD.getWDUserInfo().then( (u) => {
-      that.globalData.wildUserInfo = u
+      that.globalData.uid = u.uid
+      that.globalData.user = u
     } ).catch( err => {
       console.log(err);
     })
   },
   updateWDUserInfo(u) {
-    this.globalData.wildUserInfo = u
-  }
+    let user = u
+    user.avatarUrl = this.globalData.userInfo.avatarUrl
+    user.uid = this.globalData.uid
+    this.globalData.user = user
+  },
+  getUser() {
+    return this.globalData.user
+  },
+  jumpToTab(tabName) {
+    wx.switchTab({
+      url: '../'+ tabName +'/' + tabName
+    })
+  },
+  getWD() {
+    return this.$wd
+  },
+  jumpToPage(pageName) {
+    wx.navigateTo ({
+      url: '../'+ pageName +'/' + pageName
+    })
+  },
 })

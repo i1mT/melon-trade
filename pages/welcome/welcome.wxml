@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" class="get-auth-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击授权微信登陆 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <i-modal title="请选择自己的角色" ok-text="瓜农" cancel-text="瓜商" visible="{{ showSelectIdentity }}" bind:ok="handleSelectFarmer" bind:cancel="handleSelectTrader">
+    <view>因为你是第一次使用，说明你的身份便于使用</view>
+  </i-modal>
+</view>

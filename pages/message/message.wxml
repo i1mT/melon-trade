@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="con">
+  <view>
+    消息
+  </view>
+</view>

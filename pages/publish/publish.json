@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "发布新内容",
+  "usingComponents": {
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-icon": "../../dist/icon/index",
+    "i-panel": "../../dist/panel/index",
+    "i-input": "../../dist/input/index"
+  }
+}

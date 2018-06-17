@@ -9,3 +9,9 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.bottom-tab-bar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
