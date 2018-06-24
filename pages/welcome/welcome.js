@@ -122,9 +122,10 @@ Page({
     let uid = this.data.WDUserInfo.uid
     let user = require("../../static/DATE_STRUCT").USER
     
-    user.phone = this.data.WDUserInfo.phone,
-    user.identity = this.identity,
+    user.phone = this.data.WDUserInfo.phone
+    user.identity = this.identity
     user.name = this.data.WDUserInfo.displayName
+    user.avatar = this.data.WDUserInfo.photoURL
     WD.addUser(uid ,user).then( err => {
       if(err == null) {
         //更新全局的 wildUser信息

@@ -9,7 +9,8 @@ let mockUser = {
     gender: "",
     virturalName: "",
     hideInfo: false,
-    address: "食珍村四社"
+    address: "食珍村四社",
+    avatar: "",
   }
 }
 
@@ -71,6 +72,24 @@ const addUser = (uid, user) => {
   return new Promise((resolve, reject) => {
     ref.child(uid).set(user, (err) => {
       resolve(err)
+    })
+  })
+}
+
+/**
+ * 根据ID获取一条意向
+ * @param {*} type 意向类型 买0/卖1
+ * @param {*} id 意向ID
+ */
+const getIntentionById = (type, id) => {
+  let keyName = type == 1 ? "sell_intention" : "buy_intention"
+  var ref = wilddog.sync().ref(keyName)
+  return new Promise((resolve, reject) => {
+    ref
+    .startAt(null, id)
+    .limitToFirst(1)
+    .once('value', snapshot => {
+      resolve(snapshot.val()[id])
     })
   })
 }
@@ -153,6 +172,7 @@ module.exports = {
   initWD, 
   getWDUserInfo,
   getRegisterInfo,
+  getIntentionById,
   addUser,
   updateUser,
   addIntention,

@@ -3,12 +3,24 @@ const App = getApp()
 
 Page({
   data: {
-    id: ""
+    id: "",
+    type: 0,
+    info: {},
+    Uinfo: {}
   },
   onLoad: function(options) {
     //Do some initialize when page load.
     this.setData({
-      id: options.id
+      id: options.id,
+      type: options.type
+    })
+    WD.getIntentionById(this.data.type, this.data.id).then(res => {
+      this.setData({
+        info: res
+      })
+      console.log(res);
+      
+      this.getUserInfo(res.uid)
     })
   },
   onReady: function() {
@@ -30,5 +42,15 @@ Page({
   onPullDownRefresh: function() {
     //Do some when page pull down.
     
+  },
+  getUserInfo(id) {
+    WD.getRegisterInfo(id).then(res => {
+      console.log(res[id]);
+
+      this.setData({
+        Uinfo: res[id]
+      })
+      
+    })
   }
 })

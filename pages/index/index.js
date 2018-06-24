@@ -20,7 +20,7 @@ Page({
     wx.getSystemInfo({ 
       success:function(res){
         thisPage.setData({
-          scrollHeight:res.windowHeight 
+          scrollHeight: res.windowHeight
         })
       }
     })
@@ -148,8 +148,9 @@ Page({
   },
   jumptoDetail(e) {
     let id = e.currentTarget.id
+    let type = this.data.is_sell_tab ? 1 : 0
     wx.navigateTo({
-      url: '../intention/intention?id=' + id
+      url: '../intention/intention?id=' + id + "&type=" + type
     })
   }
 })

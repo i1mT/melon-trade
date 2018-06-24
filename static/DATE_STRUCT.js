@@ -5,7 +5,8 @@ let user = {
   gender: "",
   virturalName: "",
   hideInfo: false,
-  addrsss: ""
+  addrsss: "",
+  avatar: "",
 }
 
 let intention = {

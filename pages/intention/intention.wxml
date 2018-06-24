@@ -1,3 +1,23 @@
 <view>
-  {{id}}
+  <view class="head">
+    <i-tag class="i-tags" name="{{info.cate}}" color="yellow">{{info.cate}}</i-tag>
+    {{info.title}}
+  </view>
+  
+  <i-card title="{{Uinfo.name}}" extra="{{Uinfo.phone}}" thumb="{{Uinfo.avatar}}">
+      <view slot="content"></view>
+      <view slot="footer">地址：{{Uinfo.address}}</view>
+  </i-card>
+  <view class="content">{{info.content}}</view>
+  <view wx:for="{{info.picList}}" wx:for-item="item">
+    <image style="width: 100%; height: 300px;" mode="aspectFill"
+            src="{{item}}"></image>
+  </view>
+  <view class="bottom">
+    <view class="little-info">
+      <span>浏览：{{info.viewer}}</span>
+      <span>已报价：{{info.wanted}}</span>
+    </view>
+    <view class="send-price">报价</view>
+  </view>
 </view>
