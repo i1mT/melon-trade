@@ -69,6 +69,8 @@ function upload(filePath, success, fail, options) {
 
 function doUpload(filePath, success, fail, options) {
     var url = config.qiniuUploadURL;
+    console.log(url);
+    
     var fileName = filePath.split('//')[1];
     if (options && options.key) {
         fileName = options.key;
@@ -86,7 +88,7 @@ function doUpload(filePath, success, fail, options) {
             var dataString = res.data
             var dataObject = JSON.parse(dataString);
             //do something
-            var imageUrl = config.qiniuImageURLPrefix + dataObject.key;
+            var imageUrl = "http://" + config.qiniuImageURLPrefix + '/' + dataObject.key;
             dataObject.imageURL = imageUrl;
             console.log(dataObject);
             success(dataObject);

@@ -1,3 +1,8 @@
 .con {
   width: 100%;
 }
+
+.card .i-card-header-content {
+  color: #ff9900;
+  font-weight: bold;
+}

@@ -1,15 +1,19 @@
 <view class="con">
-<i-input value="{{ title }}" title="标题" placeholder="请输入标题" />
-<i-input value="{{ cate }}" title="瓜类" placeholder="请输入所属类别" />
-<i-input value="{{ wantedPrice }}" title="理想价格(元)" placeholder="请输入你的理想价格"/>
-<i-input value="{{ content }}" type="textarea" title="描述" placeholder="请输入描述(最多50字)" maxlength="50" />
+<i-input value="{{ title }}" title="标题" bind:change="changeTitle" placeholder="请输入标题" />
+<i-input value="{{ cate }}" title="瓜类" bind:change="changeCate" placeholder="请输入瓜类" />
+<i-input value="{{ wantedPrice }}" title="理想价格(元)" bind:change="changeWantedPrice" placeholder="请输入你的理想价格"/>
+<i-input value="{{ content }}" type="textarea" title="描述" bind:change="changeContent" placeholder="请输入描述(最多50字)" maxlength="50" />
+
+<i-panel title="上传图片(最多6张)">
 <i-row>
   <i-col span="8" i-class="col-class" wx:for="{{picList}}" wx:key="{{item.id}}" wx:for-item="item">
     <image style="width: 200px; height: 100px; background-color: #eeeeee; padding: 5px;" mode="aspectFill" src="{{item.src}}"></image>
   </i-col>
-  <i-col span="8" i-class="col-class">
-    <image style="width: 60px; height: 60px; background-color: #eeeeee; padding: 25px;" mode="aspectFill"
-          src="../../static/img/icons/add.png"></image>
+  <i-col span="8" wx:if="{{picList.length < 6}}" i-class="col-class">
+    <image bindtap="didPressChooseImage" style="width: 60px; height: 60px; background-color: #eeeeee; padding: 25px;" mode="aspectFit"
+          src="http://oqapmzmc9.bkt.clouddn.com/add.png"></image>
   </i-col>
 </i-row>
+</i-panel>
+<i-button bind:click="handelSubmit" disabled="{{submitBtnDisabled}}" type="success">确认发布</i-button>
 </view>

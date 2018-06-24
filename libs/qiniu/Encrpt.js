@@ -11,6 +11,11 @@
   * utf16 = utf8to16(utf8);
   */
 
+ let QNInfo = {
+    AK: "t7ot0f3ViccuHVC82ZFtXqmBjesao0BzW6JDxi52",
+    SK: "GYQE0dIX2PSq8ArzW5fDzpFZQ6BIzxBZ7eUMu55Z",
+    Bucket: "iimtimg"
+}
 
 
 function utf16to8(str) {
@@ -163,23 +168,27 @@ var getPolicyJson = (bkt) => {
 }
 
 var token;
-genToken = function(accessKey, secretKey, bkt) {
+genToken = function() {
+    let accessKey = QNInfo.AK
+    ,secretKey = QNInfo.SK
+    ,bkt = QNInfo.Bucket
+    
     var setStep = function(id, val) {
-        console.log(id + " => " + val)
+        // console.log(id + " => " + val)
     }
     let putPolicy = getPolicyJson(bkt)
     //SETP 2
     var put_policy = JSON.stringify(putPolicy);
-    console.log("put_policy = ", put_policy);
+    // console.log("put_policy = ", put_policy);
 
     setStep("step2", put_policy);
 
     //SETP 3
     var encoded = base64encode(utf16to8(put_policy));
-    console.log("encoded = ", encoded);
+    // console.log("encoded = ", encoded);
     setStep("step3", encoded);
 
-    let CryptoJS = require("../libs/crypto-js/crypto-js")
+    let CryptoJS = require("../crypto-js/crypto-js")
     //SETP 4
     var hash = CryptoJS.HmacSHA1(encoded, secretKey);
     var encoded_signed = hash.toString(CryptoJS.enc.Base64);

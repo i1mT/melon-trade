@@ -6,7 +6,8 @@ Page({
   data: {
     userInfo: {},
     virtualNameVisible: false,
-    phoneVisible: false
+    phoneVisible: false,
+    addressVisible: false
   },
   onLoad: function(options) {
     //Do some initialize when page load.
@@ -57,6 +58,12 @@ Page({
       phoneVisible: action
     })
   },
+  handelAddressModal() {
+    let action = !this.data.addressVisible
+    this.setData({
+      addressVisible: action
+    })
+  },
   changeVirturalName({detail}) {
     let user = this.data.userInfo
     user.virtualName = detail.detail.value
@@ -71,12 +78,22 @@ Page({
       userInfo: user
     })
   },
-  submitChangePhone({detail}) {
+  changeAddress({detail}) {
+    let user = this.data.userInfo
+    user.address = detail.detail.value
+    this.setData({
+      userInfo: user
+    })
+  },
+  submitChangePhone() {
     this.handelPhoneModal()
     this.updateUser("phone")
   },
-  submitChangeVirtualName({detail}) {
-    console.log(this.data.userInfo);
+  submitChangeAddress() {
+    this.handelAddressModal()
+    this.updateUser("address")
+  },
+  submitChangeVirtualName() {
     this.handelVirturalNameModal()
     
     this.updateUser("virtualName")

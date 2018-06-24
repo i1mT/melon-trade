@@ -1,6 +1,4 @@
 <!--index.wxml-->
 <view class="con">
-  <view>
-    消息
-  </view>
+  <view style="text-align: center;font-size: 14px; color: #aaa;">暂无消息</view>
 </view>

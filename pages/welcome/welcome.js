@@ -120,14 +120,11 @@ Page({
   register() {
     //注册新用户信息
     let uid = this.data.WDUserInfo.uid
-    let user = {
-      phone: this.data.WDUserInfo.phone,
-      identity: this.identity,
-      name: this.data.WDUserInfo.displayName,
-      gender: "",
-      virturalName: "",
-      hideInfo: false
-    }
+    let user = require("../../static/DATE_STRUCT").USER
+    
+    user.phone = this.data.WDUserInfo.phone,
+    user.identity = this.identity,
+    user.name = this.data.WDUserInfo.displayName
     WD.addUser(uid ,user).then( err => {
       if(err == null) {
         //更新全局的 wildUser信息

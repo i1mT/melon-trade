@@ -12,7 +12,8 @@
     </i-cell>
     <i-cell title="真实姓名" is-link bind:click="handelVirturalNameModal"></i-cell>
     <i-cell title="电话" is-link bind:click="handelPhoneModal"></i-cell>
-    <i-cell title="信息他人不可见">
+    <i-cell title="地址" is-link bind:click="handelAddressModal"></i-cell>
+    <i-cell title="信息他人不可见" label="完整填写以上信息便于他人联系你">
         <switch slot="footer" bindchange="changeShowInfo" checked="userInfo.hideInfo" />
     </i-cell>
   </i-cell-group>
@@ -28,6 +29,12 @@
   <i-modal visible="{{ phoneVisible }}" bind:ok="submitChangePhone" bind:cancel="handelPhoneModal">
     <view>
       <i-input value="{{ userInfo.phone }}" bind:change="changePhone" placeholder="请输入你的电话" />
+    </view>
+  </i-modal>
+  <!-- 地址弹出框 -->
+  <i-modal visible="{{ addressVisible }}" bind:ok="submitChangeAddress" bind:cancel="handelAddressModal">
+    <view>
+      <i-input value="{{ userInfo.address }}" bind:change="changeAddress" placeholder="请输入你的地址" />
     </view>
   </i-modal>
 

@@ -4,12 +4,76 @@
     <i-tab key="sell-tab" title="卖瓜"></i-tab>
     <i-tab key="purc-tab" title="收瓜"></i-tab>
   </i-tabs>
+  <!-- sell -->
   <view wx:if="{{ is_sell_tab }}">
-    卖瓜列表
+    <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+      class="list" bindscrolltolower="scrollToLower" bindscroll="onScroll" bindscrolltoupper="scrollToUpper"> 
 
+      <i-card
+        wx:for="{{sellInfo}}"
+        wx:key="{{item}}"
+        class="card"
+        title=" {{item.cate}}"
+        full="true"
+        id="{{item.id}}"
+        bindtap="jumptoDetail"
+        extra="理想价格：{{item.wantedPrice}}元"
+        >
+        <view class="title" slot="content">
+          <image bindtap="didPressChooseImage" style="width: 100%; height: 200px; background-color: #eeeeee;" mode="aspectFill"
+          src="{{item.picList[0]}}"></image>
+          {{item.title}}
+        </view>
+        <view slot="footer">
+          {{item.time}} 发布
+          {{item.viewer}} 浏览
+          {{item.wanted}} 出价
+        </view>
+      </i-card>
+      <view class="item" >
+        <text>{{ item.time }}</text>
+      </view>
+
+    </scroll-view> 
+    <view class="body-view"> 
+      <loading hidden="{{hidden}}" bindchange="loadingChange"> 
+        加载中... 
+      </loading> 
+    </view> 
   </view>
-  <view wx:else>
-    收瓜列表
 
+  <!-- buy -->
+  <view wx:else>
+    <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+      class="list" bindscrolltolower="scrollToLower" bindscroll="onScroll" bindscrolltoupper="scrollToUpper"> 
+
+      <i-card
+        wx:for="{{buyInfo}}"
+        wx:key="{{item}}"
+        title=" {{item.cate}}"
+        full="true"
+        extra="理想价格：{{item.wantedPrice}}元"
+        >
+        <view slot="content">
+          <image bindtap="didPressChooseImage" style="width: 100%; height: 200px; background-color: #eeeeee;" mode="aspectFill"
+          src="{{item.picList[0]}}"></image>
+          {{item.title}}
+        </view>
+        <view slot="footer">
+          {{item.time}} 发布
+          {{item.viewer}} 浏览
+          {{item.wanted}} 出价
+        </view>
+      </i-card>
+      <view class="item" >
+        <text>{{ item.time }}</text>
+      </view>
+
+    </scroll-view> 
+    <view class="body-view"> 
+      <loading hidden="{{hidden}}" bindchange="loadingChange"> 
+        加载中... 
+      </loading> 
+    </view>
   </view>
 </view>
